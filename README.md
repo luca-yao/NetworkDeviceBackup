@@ -57,6 +57,12 @@ class LoginAccount:
       username = 'username'                            #登入設備帳號
       password = 'password'                            #登入設備密碼
 ```
+
+## 排程
+```
+* 01 * * * root /usr/local/bin/python3 /root/shell.files/backup.py 2>&1
+```
+
 ## 成品如下圖：
 ![Imgur](https://i.imgur.com/2jkPCO1.png)
 ![Imgur](https://i.imgur.com/MvRzt17.png)
