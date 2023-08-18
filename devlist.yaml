@@ -1,0 +1,14 @@
+- hostname: HQ_Switch1      #自行定義名稱，將會用於備份後產出的檔名
+  device_type: cisco_ios    #Netmiko函數，不動
+  host: 192.168.31.253      #設備IP
+  secret: enable_password   #enable_password
+
+- hostname: HQ_Core_Switch
+  device_type: cisco_ios
+  host: 192.168.31.1
+  secret: enable_password
+
+- hostname: HQ_FW           #自行定義
+  device_type: fortinet     #Netmiko函數，不動
+  host: 192.168.31.254      #設備IP
+  secret: ''                #如果沒有就 ''
