@@ -60,7 +60,7 @@ class LoginAccount:
 
 ## 排程
 ```
-* 01 * * * root /usr/local/bin/python3 /root/shell.files/backup.py 2>&1
+* 01 * * * root /usr/local/bin/python3 /root/shell.files/NetworkDeviceBackup.py 2>&1
 ```
 
 ## 成品如下圖：
