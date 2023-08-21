@@ -14,7 +14,7 @@ Back up network devices with Netmiko
 我把一切需要使用者設定或者可能會需要設定的地方都做了模組化處理，所以**照理說**只要調整需要的部分照理說就可以正常運作了....吧?
 
 本程式主要分成三大設定檔
-- backup.py
+- NetworkDeviceBackup.py
 - config.py
 - devlist.yaml
   
