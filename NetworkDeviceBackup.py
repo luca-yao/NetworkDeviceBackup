@@ -32,6 +32,12 @@ def backup_cisco_device(net_connect, hostname, secret):
     save_backup_log(hostname, backup_output)
     net_connect.disconnect()
 
+def backup_device(net_connect, hostname, command):
+    logging.info(f"Start save running-config for {hostname}...")
+    backup_output = net_connect.send_command(command)
+    save_backup_log(hostname, backup_output)
+    net_connect.disconnect()
+
 def is_ssh_supported(device_info):
     try:
        net_connect = ConnectHandler(
@@ -71,8 +77,8 @@ def load_device_info(file_path):
 def main():
     devices = []
     setup_logging()
-
     device_info_list = load_device_info(config.Config.file_path)
+    
     for device_info in device_info_list:
         hostname = device_info["hostname"]
         device_type = device_info["device_type"]
@@ -109,11 +115,18 @@ def main():
                    password = config.LoginAccount.password
 
             )
-            logging.info(f"Start save running-config for {hostname}...")
-            backup_output = net_connect.send_command('show full-configuration')
-            save_backup_log(hostname, backup_output)
-            net_connect.disconnect()
+            backup_device(net_connect, hostname ,'show full-configuration')
 
+        elif device_info["device_type"] == 'aruba_os':
+            net_connect = ConnectHandler(
+                   device_type = device_info["device_type"],
+                   host = device_info["host"],
+                   username = config.LoginAccount.username,
+                   password = config.LoginAccount.password
+            )
+            backup_device(net_connect, hostname, 'show configuration')
+
+           
     # Delete old backup files
     delete_old_backups(config.Config.backup_directory, config.Config.days_to_keep_backup)
 
